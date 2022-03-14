@@ -7,7 +7,7 @@ class Grass extends LivingCreature {
 
     mul() {
         const newCell = random(this.chooseCell(0));
-        if (this.multiplay >= 60 && newCell) {
+        if (this.multiplay >= 70 && newCell) {
             const newGrass = new Grass(newCell[0], newCell[1], 1)
             grassArr.push(newGrass)
             matrix[newCell[1]][newCell[0]] = 1
