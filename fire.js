@@ -1,8 +1,8 @@
 class Fire extends LivingCreature {
     constructor(x, y) {
         super(x,y)
-        this.energy = 10;
-        this.mulEnergy = 100;
+        this.energy = 100;
+        this.mulEnergy = 150;
         this.defEnergy = 5;
         this.dieEnergy = 50;
         this.play = 0
