@@ -1,4 +1,6 @@
-var matrix = [];
+var socket = io();
+io.sockets.on('send matrix', matrix)
+
 
 function fireЕxtinguisher() {
   var audio = new Audio("./sound/Blastwave_FX_FireExtinguisher_BW.4175.ogg");
@@ -116,13 +118,6 @@ function killFire() {
   console.log("killed fire");
 }
 
-function generator(size) {
-  for (let i = 0; i <= size; i++) {
-    matrix.push([]);
-    for (let b = 0; b < size; b++) {
-      matrix[i].push(0);
-    }
-  }
 
   // for (let y = 0; y < count; y++) {
   // 	let x = Math.round( Math.random() * size);
@@ -131,7 +126,7 @@ function generator(size) {
   // matrix[y][x] = 1
   // 	//console.log(x,y)
   // }
-}
+
 
 function generatorEat(count, color, size, ent, arr) {
   console.log("cnvec");
@@ -314,11 +309,6 @@ function download(filename, text, isarr) {
 }
 
 const size = 50;
-const grassArr = [];
-const grassEatArr = [];
-const grassEatEatArr = [];
-const fireArr = [];
-const fireExArr = [];
 const side = 10;
 var mull = 0;
 var play = 0;
@@ -386,7 +376,3 @@ function draw() {
   }
 }
 
-// var grass1 = new Grass(1,2,1)
-// console.log(grass1)
-// var emptyCells = grass1.chooseCell(0)
-// console.log(emptyCells)
