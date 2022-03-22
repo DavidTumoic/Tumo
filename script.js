@@ -1,7 +1,63 @@
 var socket = io();
-io.sockets.on('send matrix', matrix)
+io.sockets.on('get matrix', matrix)
+io.socket.on('get matrix' , grassArr,grassEatArr,grassEatEatArr,fireArr,fireExArr)
 
 
+
+  // for (let y = 0; y < count; y++) {
+  // 	let x = Math.round( Math.random() * size);
+  // let y = Math.round( Math.random() * size);
+
+  // matrix[y][x] = 1
+  // 	//console.log(x,y)
+  // }
+
+
+function generatorEat(count, color, size, ent, arr) {
+  console.log("cnvec");
+  for (let y = 0; y < count; y++) {
+    let x = Math.round(Math.random() * size);
+    let y = Math.round(Math.random() * size);
+
+    matrix[y][x] = color;
+    arr.push(new ent(x, y, 1));
+    //console.log(x,y)
+  }
+}
+
+//  function sleep(ms) {
+//     return new Promise(resolve => setTimeout(resolve, ms));
+//   }
+
+function showbuttons(id) {
+  var button = document.getElementById(id);
+
+  // get the current value of the clock's display property
+  var displaySetting = button.style.display;
+  // now toggle the clock and the button text, depending on current state
+
+  // clock is visible. hide it
+  button.style.display = "block";
+}
+
+function hidebuttons(id) {
+  var button = document.getElementById(id);
+
+  // get the current value of the clock's display property
+  var displaySetting = button.style.display;
+  // now toggle the clock and the button text, depending on current state
+
+  // clock is visible. hide it
+  button.style.display = "none";
+}
+
+function setkill() {
+  var audio = new Audio("./sound/cinema-drum-hit-SBA-300419703-preview.ogg");
+  audio.play();
+  setTimeout(() => {
+    window.location.replace("./index.html?action=killall");
+  }, 3000);
+}
 function fireЕxtinguisher() {
   var audio = new Audio("./sound/Blastwave_FX_FireExtinguisher_BW.4175.ogg");
   audio.play();
@@ -116,63 +172,9 @@ function killFire() {
     }
   }
   console.log("killed fire");
+  
 }
-
-
-  // for (let y = 0; y < count; y++) {
-  // 	let x = Math.round( Math.random() * size);
-  // let y = Math.round( Math.random() * size);
-
-  // matrix[y][x] = 1
-  // 	//console.log(x,y)
-  // }
-
-
-function generatorEat(count, color, size, ent, arr) {
-  console.log("cnvec");
-  for (let y = 0; y < count; y++) {
-    let x = Math.round(Math.random() * size);
-    let y = Math.round(Math.random() * size);
-
-    matrix[y][x] = color;
-    arr.push(new ent(x, y, 1));
-    //console.log(x,y)
-  }
-}
-
-//  function sleep(ms) {
-//     return new Promise(resolve => setTimeout(resolve, ms));
-//   }
-
-function showbuttons(id) {
-  var button = document.getElementById(id);
-
-  // get the current value of the clock's display property
-  var displaySetting = button.style.display;
-  // now toggle the clock and the button text, depending on current state
-
-  // clock is visible. hide it
-  button.style.display = "block";
-}
-
-function hidebuttons(id) {
-  var button = document.getElementById(id);
-
-  // get the current value of the clock's display property
-  var displaySetting = button.style.display;
-  // now toggle the clock and the button text, depending on current state
-
-  // clock is visible. hide it
-  button.style.display = "none";
-}
-
-function setkill() {
-  var audio = new Audio("./sound/cinema-drum-hit-SBA-300419703-preview.ogg");
-  audio.play();
-  setTimeout(() => {
-    window.location.replace("./index.html?action=killall");
-  }, 3000);
-}
+ 
 
 function kill() {
   hidebuttons("start");
@@ -181,7 +183,54 @@ function kill() {
   showbuttons("button");
   showbuttons("button2");
   showbuttons("buttongrass");
-  showbuttons("buttonfire");
+  showbuttons("buttonfire");  function start(playsound) {
+    if (playsound) {
+      var audio = new Audio("./sound/243020__plasterbrain__game-start.ogg");
+      audio.play();
+    }
+  
+    hidebuttons("start");
+    showbuttons("restart");
+    showbuttons("stop");
+    showbuttons("button");
+    showbuttons("button2");
+    showbuttons("buttongrass");
+    showbuttons("buttonfire");
+    showbuttons("kill");
+    showbuttons("killhalf");
+    showbuttons("fireЕxtinguisher");
+  
+   
+  
+    setTimeout(() => {
+      letsGo();
+    }, 250);
+  
+    setTimeout(() => {
+      generator(size);
+    }, 500);
+  
+    setTimeout(() => {
+      generatorEat(600, 1, size, Grass, grassArr);
+    }, 1000);
+    setTimeout(() => {
+      generatorEat(50, 2, size, GrassEater, grassEatArr);
+    }, 5000);
+  
+    setTimeout(() => {
+      generatorEat(25, 4, size, GrassEaterEater, grassEatEatArr);
+    }, 9000);
+  
+    setTimeout(() => {
+      generatorEat(10, 3, size, Fire, fireArr);
+    }, 14000);
+    setTimeout(() => {
+      generatorEat(60, 5, size, fireEx, fireExArr);
+    }, 40000);
+    io.socket.emit("send matrix",matrix)
+    io.socket.emit('send matrix', grassArr,grassEatArr,grassEatEatArr,fireArr,fireExArr)
+  
+  }
   showbuttons("kill");
   showbuttons("killhalf");
   showbuttons("fireЕxtinguisher");
@@ -358,21 +407,4 @@ function draw() {
       rect(x * side, y * side, side, side);
     }
   }
-
-  for (let gr in grassArr) {
-    grassArr[gr].mul();
-  }
-  for (var grE in grassEatArr) {
-    grassEatArr[grE].eat();
-  }
-  for (var grEE in grassEatEatArr) {
-    grassEatEatArr[grEE].eat();
-  }
-  for (var fire in fireArr) {
-    fireArr[fire].eat();
-  }
-  for (var fireEx in fireExArr) {
-    fireExArr[fireEx].eat();
-  }
 }
-

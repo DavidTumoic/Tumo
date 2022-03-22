@@ -37,14 +37,29 @@ Fire = require("./fire")
 FireEx = require("./fireEx")
 
 
-function generatorEat(count, color, size, ent, arr) {
-    console.log("cnvec");
-    for (let y = 0; y < count; y++) {
-      let x = Math.round(Math.random() * size);
-      let y = Math.round(Math.random() * size);
+
+
   
-      matrix[y][x] = color;
-      arr.push(new ent(x, y, 1));
-      //console.log(x,y)
-    }
+function game(){
+  for (let gr in grassArr) {
+    grassArr[gr].mul();
   }
+  for (var grE in grassEatArr) {
+    grassEatArr[grE].eat();
+  }
+  for (var grEE in grassEatEatArr) {
+    grassEatEatArr[grEE].eat();
+  }
+  for (var fire in fireArr) {
+    fireArr[fire].eat();  
+  }
+  for (var fireEx in fireExArr) {
+    fireExArr[fireEx].eat();
+  }
+}
+setInterval(game,1000)
+
+
+io.on('connection', function (socket) {
+  game(matrix)
+})

@@ -1,4 +1,7 @@
-class fireEx extends LivingCreature {
+const LivingCreature = require("./livingCreature");
+
+
+module.exports =class fireEx extends LivingCreature {
     constructor(x, y){
         super(x,y);
         this.energy = 10;      
