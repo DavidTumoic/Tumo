@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Game of Life</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.14/p5.js"></script>
+    <script src="script.js"></script>
+   
+
+</head>
+<body>
+    <h1 class="glitch">
+        <span aria-hidden="true">Game of life</span>
+        Game of life
+        <span aria-hidden="true"> Game of life</span>
+      </h1>
+<table>
+    <tr>
+
+        <td>
+            <button id = "stop" class = "stop" onclick="kill()">Kill them all</button>
+        </td>
+        <td>
+             <button id = "kill" class = "kill"  onclick="addGrass()">Add grass</button>
+        </td>    
+        <td>
+            <button  id = "restart" class = "restart" onclick="addGrassEater()">Add grass eater</button>
+        </td>
+       
+  
+  
+        
+   
+
+    </tr> 
+
+
+
+</table>
+
+
+</body>
+</html>
