@@ -10,7 +10,9 @@ const LivingCreature = require("./livingCreature");
         this.dieEnergy = 0;
     }
     eat(){
-        const newCell = random(this.chooseCell(2));  
+        var emptyCells = super.chooseCell(2);
+		var newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
+         
        // const newCell1 = random(this.chooseCell(1));  
         if(newCell){
             var newX = newCell[0]
@@ -62,53 +64,28 @@ if(this.energy >= this.mulEnergy){
 
 
 
-    
-move(){
-        
-        const newCell = random(this.chooseCell(0));
-        const newCell2 = random(this.chooseCell(1));
-        const newCell3 = random(this.chooseCell(4));
-        
-if(newCell){
-var newX = newCell[0]
-var newY = newCell[1]
-matrix[newY][newX] = 4
+    move() {
+		var emptyCells = super.chooseCell(0);
+		var newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
 
-matrix[this.y][this.x] = 0;
+		if (newCell) {
+			var newX = newCell[0];
+			var newY = newCell[1];
 
-this.x = newX
-this.y = newY
+			matrix[newY][newX] = matrix[this.y][this.x];
+			matrix[this.y][this.x] = 0;
 
-this.energy--
-}else if(newCell2){
-    var newX = newCell2[0]
-var newY = newCell2[1]
-matrix[newY][newX] = 4
+			this.x = newX;
+			this.y = newY
+		}
 
-matrix[this.y][this.x] = 1;
+		this.energy--;
+		if (this.energy <= 0) {
+			this.die();
+		}
 
-this.x = newX
-this.y = newY
 
-this.energy = this.energy -= 0.25
-}else if(newCell3){
-    var newX = newCell3[0]
-var newY = newCell3[1]
-matrix[newY][newX] = 4
-
-matrix[this.y][this.x] = 1;
-
-this.x = newX
-this.y = newY
-
-this.energy --
-}
-if(this.energy < this.dieEnergy){
-    this.die()
-}
-        
-
-    }
+	}
 
     die(){
         for(var i  in grassEatEatArr){

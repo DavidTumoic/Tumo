@@ -10,83 +10,112 @@ const LivingCreature = require("./livingCreature");
     this.dieEnergy = 0;
   }
 
+
+	move() {
+		var emptyCells = super.chooseCell(0);
+		var newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
+
+		if (newCell) {
+			var newX = newCell[0];
+			var newY = newCell[1];
+
+			matrix[newY][newX] = matrix[this.y][this.x];
+			matrix[this.y][this.x] = 0;
+
+			this.x = newX;
+			this.y = newY
+		}
+
+		this.energy--;
+		if (this.energy <= 0) {
+			this.die();
+		}
+
+
+	}
+  mul() {
+		var emptyCells = super.chooseCell(0);
+		var newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
+
+		if (newCell) {
+			var newX = newCell[0];
+			var newY = newCell[1];
+			matrix[newY][newX] = 2
+			grassEatArr.push(new GrassEater(newX, newY, 2))
+			this.energy = 6;
+		}
+	}
+  
+  
   eat() {
-    const newCell = random(this.chooseCell(1));
-    if (newCell) {
-      var newX = newCell[0];
-      var newY = newCell[1];
-      matrix[newY][newX] = 2;
+		var grassCells = super.chooseCell(1);
+		var newCell = grassCells[Math.floor(Math.random() * grassCells.length)]
 
-      matrix[this.y][this.x] = 0;
+		if (newCell) {
 
-      this.x = newX;
-      this.y = newY;
+			var newX = newCell[0];
+			var newY = newCell[1];
 
-      this.energy = this.energy + 2;
+			matrix[newY][newX] = matrix[this.y][this.x];
+			matrix[this.y][this.x] = 0;
 
-      for (var i in grassEatArr) {
-        if (newX == grassArr[i].x && newY == grassArr[i].y) {
-          grassArr.splice(i, 1);
-          break;
-        }
-      }
-      if (this.energy >= this.mulEnergy) {
-        this.mulGEat();
-      }
-    } else {
-      this.move();
-    }
-  }
+			for (var i in grassArr) {
+				if (grassArr[i].x == newX && grassArr[i].y == newY) {
+					grassArr.splice(i, 1)
+				}
+			}
 
-  move() {
-    const newCell = random(this.chooseCell(0));
-    const newCell2 = random(this.chooseCell(2));
-    if (newCell) {
-      var newX = newCell[0];
-      var newY = newCell[1];
-      matrix[newY][newX] = 2;
+			this.x = newX;
+			this.y = newY;
+			this.energy++;
 
-      matrix[this.y][this.x] = 0;
+			if (this.energy >= 12) {
+				this.mul();
+			}
 
-      this.x = newX;
-      this.y = newY;
+		}
+		else {
+			this.move();
+		}
+	}
 
-      this.energy--;
-    } else if (newCell2) {
-      var newX = newCell2[0];
-      var newY = newCell2[1];
-      matrix[newY][newX] = 2;
+  // move() {
+  //   const newCell = random(this.chooseCell(0));
+  //   const newCell2 = random(this.chooseCell(2));
+  //   if (newCell) {
+  //     var newX = newCell[0];
+  //     var newY = newCell[1];
+  //     matrix[newY][newX] = 2;
 
-      matrix[this.y][this.x] = 2;
+  //     matrix[this.y][this.x] = 0;
 
-      this.x = newX;
-      this.y = newY;
+  //     this.x = newX;
+  //     this.y = newY;
 
-      this.energy--;
-    }
-    if (this.energy < this.dieEnergy) {
-      this.die();
-    }
-  }
+  //     this.energy--;
+  //   } else if (newCell2) {
+  //     var newX = newCell2[0];
+  //     var newY = newCell2[1];
+  //     matrix[newY][newX] = 2;
 
-  die() {
-    for (var i in grassEatArr) {
-      if (this.x == grassEatArr[i].x && this.y == grassEatArr[i].y) {
-        grassEatArr.splice(i, 1);
-        break;
-      }
-    }
-    matrix[this.y][this.x] = 0;
-  }
+  //     matrix[this.y][this.x] = 2;
 
-  mulGEat() {
-    const newCell = random(this.chooseCell(0));
-    if (newCell && this.energy >= this.mulEnergy) {
-      var newX = newCell[0];
-      var newY = newCell[1];
-      matrix[newY][newX] = 2;
-      grassEatArr.push(new GrassEater(newX, newY, this.energy, this.mulEnergy));
-      this.energy = this.defEnergy;
-    }
-  }
+  //     this.x = newX;
+  //     this.y = newY;
+
+  //     this.energy--;
+  //   }
+  //   if (this.energy < this.dieEnergy) {
+  //     this.die();
+  //   }
+  // }
+
+	die() {
+		matrix[this.y][this.x] = 0;
+		for (var i in grassEatArr) {
+			if (grassEatArr[i].x == this.x && grassEatArr[i].y == this.y) {
+				grassEatArr.splice(i, 1)
+			}
+		}
+	}
 }

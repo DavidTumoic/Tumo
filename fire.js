@@ -19,9 +19,9 @@ module.exports = class Fire extends LivingCreature {
 
 
     eat() {
-        const newCell = random(this.chooseCell(1));
-        const newCell2 = random(this.chooseCell(2));
-        const newCell3 = random(this.chooseCell(4));
+        const newCell = Math.floor(Math.random*  this.chooseCell(1));
+        const newCell2 = Math.floor(Math.random*  this.chooseCell(2));
+        const newCell3 = Math.floor(Math.random*  this.chooseCell(4));
         if (newCell2) {
             var newX = newCell2[0]
             var newY = newCell2[1]
@@ -102,7 +102,7 @@ module.exports = class Fire extends LivingCreature {
 
     move() {
 
-        const newCell = random(this.chooseCell(0));
+        const newCell = Math.floor(Math.random*  this.chooseCell(0));
         //const newCell2 = random(this.chooseCell(0));
         if (newCell) {
             var newX = newCell[0]
@@ -142,7 +142,7 @@ module.exports = class Fire extends LivingCreature {
             }
 
         }
-        mull--
+        
         matrix[this.y][this.x] = 0
     }
 
