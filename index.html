@@ -36,27 +36,10 @@
 
    <button id = "start" class = start onclick="start(true)">Start</button>
 
-  
-
-
-
-
-
-
-
-
-
-
-<!--<button id = "download" class = "download" onclick="Downloadall()">save</button>-->
-  
-
-
-  
 
 <script> 
     const urlParams = new URLSearchParams(window.location.search);
     const action = urlParams.get('action')
-    // alert(action)
     if (action == "restart") {
         
         start(false);
@@ -64,46 +47,5 @@
         kill();
     }
     </script>
-  
-   <!--<script>
-   
-   
-   function addbuttons(clasS,functioN,value){
-
-
-    var btn = document.createElement('input');
-    btn.setAttribute('type' , 'button');
-    btn.setAttribute('class' , clasS);
-    btn.setAttribute("value" , value);
-    btn.setAttribute('onclick' , functioN);
-    document.body.appendChild(btn);
-    // btn.addEventListener('click','restart',false);
-
- 
-
-// var stop = '<button class = "stop" onclick="stop()">Stop</button>'
-// var restart = '<button class = "restart" onclick="restart()">Restart</button>'
-// var button = '<button class="button" onclick="generatorEat(15,2,size,GrassEater,grassEatArr)">GrassEater</button>'
-// var button2 = '<button class="button2" onclick="generatorEat(5,4,size,GrassEaterEater,grassEatEatArr)">GrassEaterEater</button>'
-// var buttongrass = '<button class="buttongrass" onclick="generatorEat(100,1,size,Grass,grassArr)">Grass</button>'
-// var buttonfire = '<button class = "buttonfire" onclick="generatorEat(10,3,size,Fire,fireArr)">Fire</button>'
-// var kill = '<button class = "kill" onclick="killall()">kill All</button>'
-// var killhalf = '<button class = "killhalf" onclick="killFire()">kill Fire</button>'
-
-// // document.write(stop)
-// // document.write(restart)
-// // document.write(button)
-// // document.write(button2)
-// // document.write(buttongrass)
-// // document.write(buttonfire)
-// // document.write(kill)
-// // document.write(killhalf)
-
-
-    }
-</script>-->
-
-
-<button class = "info" onclick="window.location.replace('./info.html')">Creators Info</button>
 </body>
 </html>
