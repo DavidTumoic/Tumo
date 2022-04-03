@@ -4,7 +4,6 @@ const LivingCreature = require("./livingCreature");
     constructor(x, y){
         super(x,y)
         this.energy = 50;
-
         this.mulEnergy = 70;
         this.defEnergy = 5;
         this.dieEnergy = 0;
@@ -31,7 +30,7 @@ const LivingCreature = require("./livingCreature");
 			this.y = newY;
 			this.energy++;
 
-			if (this.energy >= 12) {
+			if (this.energy >= this.mulEnergy) {
 				this.mul();
 			}
 

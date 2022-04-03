@@ -21,7 +21,6 @@
    <table>
 <tr>
     <td><button id = "stop" class = "stop" onclick="stop()">Stop</button></td>
-    <td><button id = "restart" class = "restart" onclick="restart()">Restart</button></td>
     <td><button id = "button" class="button" onclick="herb()">herbivorous</button></td>
     <td><button id = "button2" class="button2" onclick="pred()">predator</button></td>
     <td><button id = "buttongrass" class="buttongrass" onclick="grass()">Grass</button></td>
@@ -40,10 +39,8 @@
 <script> 
     const urlParams = new URLSearchParams(window.location.search);
     const action = urlParams.get('action')
-    if (action == "restart") {
-        
-        start(false);
-    }else if(action == "killall"){
+
+    if(action == "killall"){
         kill();
     }
     </script>

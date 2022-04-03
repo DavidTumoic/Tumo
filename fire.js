@@ -151,7 +151,8 @@ module.exports = class Fire extends LivingCreature {
 
     mulGEat() {
 
-        const newCell = random(this.chooseCell(0));
+        var emptyCells = super.chooseCell(0);
+        var newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
         if (newCell && this.energy >= this.mulEnergy && mull <= 100) {
             var newX = newCell[0]
             var newY = newCell[1]

@@ -2,7 +2,6 @@ var socket = io()
 
 function kill() {
 	hidebuttons("start")
-	showbuttons("restart")
 	showbuttons("stop")
 	showbuttons("button")
 	showbuttons("button2")
@@ -36,25 +35,11 @@ function herb() {
 	var audio = new Audio('./sound/Indian Elephant 2 - QuickSounds.com.ogg');
 	audio.play();
 }
-
-function restart() {
-	// killall()
-	// // stop()
-	// //erase();
-	// setTimeout(() => {start()}, 3000);
-
-	var audio = new Audio('./sound/cinema-drum-hit-SBA-300419703-preview.ogg');
-	audio.play();
-	setTimeout(() => { window.location.replace("./index.html?action=restart") }, 3000);
-
-
-
-}
 function stop() {
 
 	var audio = new Audio('./sound/cinema-drum-hit-SBA-300419703-preview.ogg');
 	audio.play();
-	setTimeout(() => { window.location.replace("./index.html") }, 3000);
+	setTimeout(() => { window.location.replace("./server.js") }, 3000);
 
 }
 function killFire() {
@@ -100,7 +85,6 @@ function setkill() {
 
 function start(playsound) {
 	hidebuttons("start")
-	showbuttons("restart")
 	showbuttons("stop")
 	showbuttons("button")
 	showbuttons("button2")
