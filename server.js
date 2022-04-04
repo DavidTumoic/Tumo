@@ -53,19 +53,34 @@ function createObject() {
         matrix[y][x] = 1
         grassArr.push(new Grass(x, y, 1))
       }
-      else if (matrix[y][x] == 2) {
+      setTimeout(() => {
+
+       
+      }, 2000);
+       if (matrix[y][x] == 2) {
         matrix[y][x] = 2
         grassEatArr.push(new GrassEater(x, y, 2))
       }
-      else if (matrix[y][x] == 3) {
+      setTimeout(() => {
+       
+      }, 4000);
+      if (matrix[y][x] == 3) {
         matrix[y][x] = 3
         grassEatEatArr.push(new GrassEaterEater(x, y, 3))
-      }
-      else if (matrix[y][x] == 4) {
+      } 
+      setTimeout(() => {
+  
+       }, 7500);
+
+       if (matrix[y][x] == 4) {
         matrix[y][x] = 4
         fireArr.push(new Fire(x, y, 4))
       }
-      else if (matrix[y][x] == 5) {
+       setTimeout(() => {
+
+       }, 10000);
+
+       if (matrix[y][x] == 5) {
         matrix[y][x] = 5
         fireExArr.push(new FireEx(x, y, 5))
       }
